@@ -33,7 +33,8 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
     JSlider delay;
 
 
-    public static Draw draw;                                                                                            // initiate draw class object, so we can draw "duh"
+    private static Draw draw;                                                                                           // initiate draw class object, so we can draw
+
     public static final int WIDTH = GameMaster.PIXEL, HEIGHT = GameMaster.PIXEL, XOFF = 10, YOFF = 10;                  // set size of game board in the window (Spielfeldgröße)
     public static final int BUTTONS = 60, XFRAME = 36, YFRAME = 57, SLIDER = 75;
     public static int STARTVALUE = 25, DEFAULT_DELAY = 10;
@@ -42,31 +43,31 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
     public void create(){                                                                                               // offset x / y, so board is not starting directly on window border
 
         //label
-        generationValue = new JLabel("Generation");                                                                // LABEL MARKING GENERATION COUNTER
+        generationValue = new JLabel("Generation");                                                               // LABEL MARKING GENERATION COUNTER
         generationValue.setBounds(WIDTH+20, 13, 67, 20);
 
-        sliderValue3 = new JLabel();                                                                                    // DISPLAY GENERATION VALUE
+        sliderValue3 = new JLabel();                                                                                   // DISPLAY GENERATION VALUE
         sliderValue3.setBounds(WIDTH+27,38, 65, 18);
         sliderValue3.setText(Integer.toString(GameMaster.generation));
         sliderValue3.setForeground(Color.DARK_GRAY);
 
 
         //***********************
-        aliveValue = new JLabel("lebendig");                                                                       // LABEL MARKING LIVING CELLS
+        aliveValue = new JLabel("lebendig");                                                                     // LABEL MARKING LIVING CELLS
         aliveValue.setBounds(WIDTH+26, 76, 67, 20);
 
-        sliderValue4 = new JLabel();                                                                                    // DISPLAY CELLS ALIVE VALUE
+        sliderValue4 = new JLabel();                                                                                   // DISPLAY CELLS ALIVE VALUE
         sliderValue4.setBounds(WIDTH+27,100, 65, 18);
         sliderValue4.setText(Integer.toString(GameMaster.startCells));
         sliderValue4.setForeground(Color.DARK_GRAY);
 
 
         //***********************
-        sliderName2 = new JLabel("Timer");                                                                         // LABEL FOR NAME OF DELAY SLIDER
+        sliderName2 = new JLabel("Timer");                                                                       // LABEL FOR NAME OF DELAY SLIDER
         sliderName2.setBounds(WIDTH+30, (HEIGHT/2)-50, 60, 10);
 
 
-        sliderValue2 = new JLabel();                                                                                    // DISPLAY ms VALUE
+        sliderValue2 = new JLabel();                                                                                  // DISPLAY ms VALUE
         sliderValue2.setBounds(WIDTH+27,(HEIGHT/2)-29, 60, 10);
         val2 = Integer.toString(DEFAULT_DELAY);
         sliderValue2.setText(val2 + " ms");
@@ -74,11 +75,11 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
 
         //***********************
-        sliderName = new JLabel();                                                                                      // STARTING CELLS (NAME) LABEL
+        sliderName = new JLabel();                                                                                    // STARTING CELLS (NAME) LABEL
         sliderName.setBounds(WIDTH+10,558,70,25);
         sliderName.setText("% Startcells");
 
-        sliderValue = new JLabel();                                                                                     // DISPLAY % VALUE
+        sliderValue = new JLabel();                                                                                   // DISPLAY % VALUE
         sliderValue.setBounds(WIDTH+34,535, 35, 20);
         val = Integer.toString(STARTVALUE);
         sliderValue.setText(val + " %");
@@ -87,7 +88,7 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
         //**************************************************************************************************************
         //slider
-        howManyStarters = new JSlider(0,100, STARTVALUE);                                                     // ACTUAL SLIDER FOR STARTING PERCENTAGE
+        howManyStarters = new JSlider(0,100, STARTVALUE);                                                   // ACTUAL SLIDER FOR STARTING PERCENTAGE
         howManyStarters.addChangeListener( this);
         howManyStarters.setBounds(255, 538,260,38);
         howManyStarters.setName("percentage of (randomly distributed) living cells based on number of all cells");
@@ -101,7 +102,7 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
 
         //***********************
-        delay = new JSlider(JSlider.VERTICAL,0, 1000, DEFAULT_DELAY);                                         // GENERATIONEN-BERECHNUNGSDELAY SLIDER
+        delay = new JSlider(JSlider.VERTICAL,0, 1000, DEFAULT_DELAY);                                       // GENERATIONEN-BERECHNUNGSDELAY SLIDER
         delay.addChangeListener(this);
         delay.setBounds(WIDTH+20,(HEIGHT/2)-10, 60, (HEIGHT/2)+15);
         delay.setPaintTicks(true);
@@ -115,7 +116,7 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
         //**************************************************************************************************************
         //button(s)
-        startButton = new JButton();                                                                                    // START BUTTON
+        startButton = new JButton();                                                                                  // START BUTTON
         startButton.setBounds(15, 539, 75, 32);
         startButton.setText("Start!");
         startButton.setVisible(true);
@@ -126,7 +127,7 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
 
         //***********************
-        pauseButton = new JButton();                                                                                    // PAUSE / RESUME BUTTON
+        pauseButton = new JButton();                                                                                  // PAUSE / RESUME BUTTON
         pauseButton.setBounds(95, 539, 75, 32);
         pauseButton.setText("Pause");
         pauseButton.setVisible(true);
@@ -138,7 +139,7 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
 
         //***********************
-        restartButton = new JButton();                                                                                  // RESET BUTTON
+        restartButton = new JButton();                                                                                // RESET BUTTON
         restartButton.setBounds(175, 539, 75, 32);
         restartButton.setText("Reset");
         restartButton.setVisible(true);
@@ -150,17 +151,17 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
 
         //**************************************************************************************************************
         //displayed window
-        jframe = new JFrame("Game of Life");                                                                       // initiating new JFrame + setting title of the window in top bar
-        jframe.setSize(WIDTH + XFRAME + SLIDER, HEIGHT + YFRAME + BUTTONS);                               // JFrame size
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                                                          // end program and close window on closing operation
-        jframe.setLocationRelativeTo(null);                                                                             // start in the middle of main monitor
-        jframe.setResizable(false);                                                                                     // window will not be resizable
+        jframe = new JFrame("Game of Life");                                                                     // initiating new JFrame + setting title of the window in top bar
+        jframe.setSize(WIDTH + XFRAME + SLIDER, HEIGHT + YFRAME + BUTTONS);                                            // JFrame size
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                                                         // end program and close window on closing operation
+        jframe.setLocationRelativeTo(null);                                                                         // start in the middle of main monitor
+        jframe.setResizable(false);                                                                         // window will not be resizable
 
-        draw = new Draw();                                                                                              // new draw object
-        draw.setBounds(0,0,WIDTH + XFRAME + SLIDER,HEIGHT + YFRAME + BUTTONS);                      // same size as the JFrame
-        draw.setVisible(true);                                                                                          // visibility function set to true -> we can see it then :)
+        draw = new Draw();                                                                                             // new draw object
+        draw.setBounds(0,0,WIDTH + XFRAME + SLIDER,HEIGHT + YFRAME + BUTTONS);                                    // same size as the JFrame
+        draw.setVisible(true);                                                                                  // visibility function set to true -> we can see it then :)
 
-        jframe.add(sliderValue);                                                                                        // ADDING  EVERY SLIDER, BUTTON, LABEL
+        jframe.add(sliderValue);                                                                                       // ADDING  EVERY SLIDER, BUTTON, LABEL
         jframe.add(sliderValue2);
         jframe.add(sliderValue3);
         jframe.add(sliderValue4);
@@ -173,8 +174,8 @@ public class GUI extends JFrame implements ActionListener, ChangeListener {     
         jframe.add(restartButton);
         jframe.add(pauseButton);
         jframe.add(startButton);
-        jframe.add(draw);                                                                                               // adding draw-class object "draw" to the JFrame "jframe"
-        jframe.setVisible(true);                                                                                        // visibility function set to true -> we can see this then :)
+        jframe.add(draw);                                                                                              // adding draw-class object "draw" to the JFrame "jframe"
+        jframe.setVisible(true);                                                                                    // visibility function set to true -> we can see this then :)
     }
 
 
